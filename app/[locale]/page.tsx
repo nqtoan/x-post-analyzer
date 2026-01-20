@@ -3,16 +3,18 @@
 import {
   Alert,
   Box,
+  Button,
   Container,
   Divider,
   Group,
   Loader,
+  Progress,
   Stack,
   Text,
   Title,
 } from "@mantine/core";
 import { useLocale, useTranslations } from "next-intl";
-import { useState } from "react";
+import { useEffect, useRef, useState, useTransition } from "react";
 
 import { Improvements } from "@/components/Improvements";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
@@ -25,39 +27,82 @@ import styles from "./page.module.css";
 
 import type { AnalysisResult, AnalyzeResponse } from "@/lib/types";
 
+const PROGRESS_STEPS = [
+  { progress: 10, key: "step1" },
+  { progress: 30, key: "step2" },
+  { progress: 50, key: "step3" },
+  { progress: 70, key: "step4" },
+  { progress: 90, key: "step5" },
+];
+
 export default function HomePage(): React.ReactNode {
   const t = useTranslations("header");
+  const tInput = useTranslations("input");
   const tError = useTranslations("error");
+  const tProgress = useTranslations("progress");
   const locale = useLocale();
 
   const [text, setText] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
+  const [isPending, startTransition] = useTransition();
   const [result, setResult] = useState<AnalysisResult | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [progressStep, setProgressStep] = useState(0);
+  const abortControllerRef = useRef<AbortController | null>(null);
 
-  const handleAnalyze = async (): Promise<void> => {
-    setIsLoading(true);
-    setError(null);
-
-    try {
-      const response = await fetch("/api/analyze", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ text, locale }),
-      });
-
-      const data: AnalyzeResponse = await response.json();
-
-      if (data.success && data.data) {
-        setResult(data.data);
-      } else {
-        setError(data.error ?? tError("apiError"));
-      }
-    } catch {
-      setError(tError("apiError"));
-    } finally {
-      setIsLoading(false);
+  useEffect(() => {
+    if (!isPending) {
+      return;
     }
+
+    const interval = setInterval(() => {
+      setProgressStep((prev) => {
+        if (prev < PROGRESS_STEPS.length - 1) {
+          return prev + 1;
+        }
+        return prev;
+      });
+    }, 800);
+
+    return () => clearInterval(interval);
+  }, [isPending]);
+
+  const handleAnalyze = (): void => {
+    setError(null);
+    setProgressStep(0);
+
+    abortControllerRef.current = new AbortController();
+    const { signal } = abortControllerRef.current;
+
+    startTransition(async () => {
+      try {
+        const response = await fetch("/api/analyze", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ text, locale }),
+          signal,
+        });
+
+        const data: AnalyzeResponse = await response.json();
+
+        if (data.success && data.data) {
+          setResult(data.data);
+        } else {
+          setError(data.error ?? tError("apiError"));
+        }
+      } catch (err) {
+        if (err instanceof Error && err.name === "AbortError") {
+          // ユーザーがキャンセルした場合は何もしない
+          return;
+        }
+        setError(tError("apiError"));
+      }
+    });
+  };
+
+  const handleCancel = (): void => {
+    abortControllerRef.current?.abort();
+    abortControllerRef.current = null;
+    setProgressStep(0);
   };
 
   const handleApplyOptimized = (optimizedText: string): void => {
@@ -85,7 +130,7 @@ export default function HomePage(): React.ReactNode {
             value={text}
             onChange={setText}
             onAnalyze={handleAnalyze}
-            isLoading={isLoading}
+            isLoading={isPending}
           />
 
           {error !== null && (
@@ -94,13 +139,34 @@ export default function HomePage(): React.ReactNode {
             </Alert>
           )}
 
-          {isLoading && (
+          {isPending && (
             <Box className={styles.loading}>
-              <Loader size="lg" />
+              <Stack align="center" gap="md" w="100%">
+                <Loader size="lg" />
+                <Progress
+                  value={PROGRESS_STEPS[progressStep].progress}
+                  size="lg"
+                  radius="xl"
+                  animated={true}
+                  w="100%"
+                  maw={400}
+                />
+                <Text size="sm" c="dimmed">
+                  {tProgress(PROGRESS_STEPS[progressStep].key)}
+                </Text>
+                <Button
+                  variant="outline"
+                  color="red"
+                  size="sm"
+                  onClick={handleCancel}
+                >
+                  {tInput("cancel")}
+                </Button>
+              </Stack>
             </Box>
           )}
 
-          {result && !isLoading && (
+          {result !== null && !isPending && (
             <Stack gap="xl">
               <ScoreDisplay totalScore={result.totalScore} grade={result.grade} />
 

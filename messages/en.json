@@ -11,7 +11,8 @@
     "placeholder": "Enter your post...",
     "charCount": "{count}/280",
     "analyzeButton": "Analyze",
-    "analyzing": "Analyzing..."
+    "analyzing": "Analyzing...",
+    "cancel": "Cancel"
   },
   "score": {
     "title": "Total Score",
@@ -62,5 +63,12 @@
   },
   "language": {
     "switch": "日本語"
+  },
+  "progress": {
+    "step1": "Analyzing your post...",
+    "step2": "Calculating engagement metrics...",
+    "step3": "Checking penalty factors...",
+    "step4": "Generating improvement suggestions...",
+    "step5": "Computing final score..."
   }
 }
