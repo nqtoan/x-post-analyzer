@@ -1,11 +1,11 @@
 {
   "metadata": {
-    "title": "X Post Analyzer - ツイートのバイラル度を分析",
-    "description": "Xのアルゴリズムに基づいてあなたの投稿のバイラルポテンシャルを採点し、改善案を提示します"
+    "title": "X Post Analyzer - ツイートのバズり度を分析",
+    "description": "Xのアルゴリズムに基づいてあなたの投稿のバズり度を採点し、改善案を提示します"
   },
   "header": {
     "title": "X Post Analyzer",
-    "subtitle": "ツイートのバイラル度を分析"
+    "subtitle": "ツイートのバズり度を分析"
   },
   "input": {
     "placeholder": "投稿内容を入力...",
@@ -48,8 +48,8 @@
     "title": "改善提案",
     "priority": "優先度",
     "expectedGain": "予想スコア向上",
-    "optimizedVersion": "最適化版",
-    "apply": "適用する"
+    "improvedText": "改善版テキスト",
+    "improvementPoints": "改善ポイント"
   },
   "tweet": {
     "button": "ツイートする",

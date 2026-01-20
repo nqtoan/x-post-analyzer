@@ -20,7 +20,6 @@ import { Improvements } from "@/components/Improvements";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 import { ScoreBreakdown } from "@/components/ScoreBreakdown";
 import { ScoreDisplay } from "@/components/ScoreDisplay";
-import { TweetButton } from "@/components/TweetButton";
 import { TweetInput } from "@/components/TweetInput";
 
 import styles from "./page.module.css";
@@ -105,11 +104,6 @@ export default function HomePage(): React.ReactNode {
     setProgressStep(0);
   };
 
-  const handleApplyOptimized = (optimizedText: string): void => {
-    setText(optimizedText);
-    setResult(null);
-  };
-
   return (
     <Box className={styles.page}>
       <Container size="md" py="xl">
@@ -177,13 +171,8 @@ export default function HomePage(): React.ReactNode {
 
               <Improvements
                 improvements={result.improvements}
-                optimizedVersion={result.optimizedVersion}
-                onApplyOptimized={handleApplyOptimized}
+                improvedVersions={result.improvedVersions}
               />
-
-              <Divider />
-
-              <TweetButton text={text} />
             </Stack>
           )}
         </Stack>

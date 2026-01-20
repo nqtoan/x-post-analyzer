@@ -81,6 +81,22 @@ Respond with ONLY valid JSON in this exact format:
     { "priority": 4, "suggestion": "<string>", "expectedGain": <number> },
     { "priority": 5, "suggestion": "<string>", "expectedGain": <number> }
   ],
-  "optimizedVersion": "<string - improved version of the post>"
+  "improvedVersions": [
+    {
+      "title": "<string - short title describing the improvement approach>",
+      "text": "<string - improved version of the post>",
+      "improvements": ["<string - specific improvement 1>", "<string - specific improvement 2>"]
+    },
+    {
+      "title": "<string - short title describing the improvement approach>",
+      "text": "<string - improved version of the post>",
+      "improvements": ["<string - specific improvement 1>", "<string - specific improvement 2>"]
+    },
+    {
+      "title": "<string - short title describing the improvement approach>",
+      "text": "<string - improved version of the post>",
+      "improvements": ["<string - specific improvement 1>", "<string - specific improvement 2>"]
+    }
+  ]
 }`;
 };

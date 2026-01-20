@@ -48,8 +48,8 @@
     "title": "Improvement Suggestions",
     "priority": "Priority",
     "expectedGain": "Expected Score Gain",
-    "optimizedVersion": "Optimized Version",
-    "apply": "Apply"
+    "improvedText": "Improved Text",
+    "improvementPoints": "Improvement Points"
   },
   "tweet": {
     "button": "Tweet",

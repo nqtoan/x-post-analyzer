@@ -17,6 +17,12 @@ export interface Improvement {
   expectedGain: number;
 }
 
+export interface ImprovedVersion {
+  title: string;
+  text: string;
+  improvements: string[];
+}
+
 export interface ScoreBreakdown {
   // Tier 1: Core Engagement (60 points)
   replyPotential: ScoreItem;
@@ -53,7 +59,7 @@ export interface AnalysisResult {
   breakdown: ScoreBreakdown;
   penalties: Penalties;
   improvements: Improvement[];
-  optimizedVersion: string;
+  improvedVersions: ImprovedVersion[];
 }
 
 export interface AnalyzeRequest {

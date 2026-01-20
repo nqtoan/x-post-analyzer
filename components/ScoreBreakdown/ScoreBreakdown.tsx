@@ -83,7 +83,7 @@ function ScoreRow({ item, label }: { item: ScoreItem; label: string }): React.Re
         </Group>
       </Table.Td>
       <Table.Td>
-        <Text size="xs" c="dimmed" lineClamp={2}>
+        <Text size="xs" c="dimmed">
           {item.reason}
         </Text>
       </Table.Td>
@@ -110,7 +110,7 @@ export function ScoreBreakdown({
         {t("breakdown")}
       </Title>
 
-      <Accordion variant="separated" defaultValue="tier1">
+      <Accordion variant="separated" multiple={true} defaultValue={["tier1"]}>
         {tiers.map((tier) => {
           const tierScore = tier.items.reduce(
             (sum, item) => sum + breakdown[item.key].score,

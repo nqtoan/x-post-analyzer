@@ -13,20 +13,20 @@ import {
 } from "@mantine/core";
 import { useTranslations } from "next-intl";
 
+import { TweetButton } from "@/components/TweetButton";
+
 import styles from "./Improvements.module.css";
 
-import type { Improvement } from "@/lib/types";
+import type { Improvement, ImprovedVersion } from "@/lib/types";
 
 interface ImprovementsProps {
   improvements: Improvement[];
-  optimizedVersion: string;
-  onApplyOptimized: (text: string) => void;
+  improvedVersions: ImprovedVersion[];
 }
 
 export function Improvements({
   improvements,
-  optimizedVersion,
-  onApplyOptimized,
+  improvedVersions,
 }: ImprovementsProps): React.ReactNode {
   const t = useTranslations("improvements");
 
@@ -51,26 +51,41 @@ export function Improvements({
           </Card>
         ))}
 
-        {optimizedVersion.length > 0 && (
+        {improvedVersions.length > 0 && (
           <>
             <Divider my="md" />
-            <Box>
-              <Text size="sm" fw={500} mb="xs">
-                {t("optimizedVersion")}
-              </Text>
-              <Card padding="md" radius="md" withBorder={true}>
-                <Text size="sm" className={styles.optimizedText}>
-                  {optimizedVersion}
-                </Text>
-              </Card>
-              <Button
-                mt="sm"
-                variant="light"
-                onClick={() => onApplyOptimized(optimizedVersion)}
-              >
-                {t("apply")}
-              </Button>
-            </Box>
+            <Stack gap="lg">
+              {improvedVersions.map((version, index) => (
+                <Card key={index} padding="lg" radius="md" withBorder={true} className={styles.versionCard}>
+                  <Stack gap="md">
+                    <Title order={4}>{version.title}</Title>
+                    <Box>
+                      <Text size="sm" fw={500} mb="xs" c="dimmed">
+                        {t("improvedText")}
+                      </Text>
+                      <Card padding="md" radius="md" withBorder={true} bg="gray.0">
+                        <Text size="sm" className={styles.optimizedText}>
+                          {version.text}
+                        </Text>
+                      </Card>
+                    </Box>
+                    <Box>
+                      <Text size="sm" fw={500} mb="xs" c="dimmed">
+                        {t("improvementPoints")}
+                      </Text>
+                      <Stack gap="xs">
+                        {version.improvements.map((imp, impIndex) => (
+                          <Text key={impIndex} size="xs" c="dimmed">
+                            • {imp}
+                          </Text>
+                        ))}
+                      </Stack>
+                    </Box>
+                    <TweetButton text={version.text} />
+                  </Stack>
+                </Card>
+              ))}
+            </Stack>
           </>
         )}
       </Stack>
