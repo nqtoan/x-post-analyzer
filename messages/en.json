@@ -1,0 +1,66 @@
+{
+  "metadata": {
+    "title": "X Post Analyzer - Analyze Tweet Viral Potential",
+    "description": "Score your post's viral potential based on X's algorithm and get improvement suggestions"
+  },
+  "header": {
+    "title": "X Post Analyzer",
+    "subtitle": "Analyze Tweet Viral Potential"
+  },
+  "input": {
+    "placeholder": "Enter your post...",
+    "charCount": "{count}/280",
+    "analyzeButton": "Analyze",
+    "analyzing": "Analyzing..."
+  },
+  "score": {
+    "title": "Total Score",
+    "grade": "Grade",
+    "breakdown": "Score Breakdown",
+    "tier1": "Core Engagement",
+    "tier2": "Extended Engagement",
+    "tier3": "Relationship Building",
+    "penalties": "Penalties"
+  },
+  "breakdown": {
+    "replyPotential": "Reply Potential",
+    "retweetPotential": "Retweet Potential",
+    "favoritePotential": "Favorite Potential",
+    "quotePotential": "Quote Potential",
+    "dwellTime": "Dwell Time",
+    "continuousDwellTime": "Continuous Dwell Time",
+    "clickPotential": "Click Potential",
+    "photoExpand": "Photo Expand",
+    "videoView": "Video View",
+    "quotedClick": "Quoted Click",
+    "profileClick": "Profile Click",
+    "followPotential": "Follow Potential",
+    "sharePotential": "Share Potential",
+    "shareViaDM": "Share via DM",
+    "shareViaCopyLink": "Share via Copy Link",
+    "notInterested": "Not Interested Risk",
+    "muteRisk": "Mute Risk",
+    "blockRisk": "Block Risk",
+    "reportRisk": "Report Risk"
+  },
+  "improvements": {
+    "title": "Improvement Suggestions",
+    "priority": "Priority",
+    "expectedGain": "Expected Score Gain",
+    "optimizedVersion": "Optimized Version",
+    "apply": "Apply"
+  },
+  "tweet": {
+    "button": "Tweet",
+    "success": "Tweet composer opened"
+  },
+  "error": {
+    "empty": "Please enter your post content",
+    "tooLong": "Please keep it under 280 characters",
+    "apiError": "An error occurred during analysis",
+    "retry": "Retry"
+  },
+  "language": {
+    "switch": "日本語"
+  }
+}

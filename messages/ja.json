@@ -1,0 +1,66 @@
+{
+  "metadata": {
+    "title": "X Post Analyzer - ツイートのバイラル度を分析",
+    "description": "Xのアルゴリズムに基づいてあなたの投稿のバイラルポテンシャルを採点し、改善案を提示します"
+  },
+  "header": {
+    "title": "X Post Analyzer",
+    "subtitle": "ツイートのバイラル度を分析"
+  },
+  "input": {
+    "placeholder": "投稿内容を入力...",
+    "charCount": "{count}/280",
+    "analyzeButton": "分析する",
+    "analyzing": "分析中..."
+  },
+  "score": {
+    "title": "総合スコア",
+    "grade": "グレード",
+    "breakdown": "スコア詳細",
+    "tier1": "Core Engagement",
+    "tier2": "Extended Engagement",
+    "tier3": "Relationship Building",
+    "penalties": "ペナルティ"
+  },
+  "breakdown": {
+    "replyPotential": "リプライ可能性",
+    "retweetPotential": "リツイート可能性",
+    "favoritePotential": "いいね可能性",
+    "quotePotential": "引用可能性",
+    "dwellTime": "滞在時間",
+    "continuousDwellTime": "連続滞在時間",
+    "clickPotential": "クリック可能性",
+    "photoExpand": "画像展開",
+    "videoView": "動画視聴",
+    "quotedClick": "引用元クリック",
+    "profileClick": "プロフィールクリック",
+    "followPotential": "フォロー可能性",
+    "sharePotential": "シェア可能性",
+    "shareViaDM": "DMシェア",
+    "shareViaCopyLink": "リンクコピー",
+    "notInterested": "興味なしリスク",
+    "muteRisk": "ミュートリスク",
+    "blockRisk": "ブロックリスク",
+    "reportRisk": "通報リスク"
+  },
+  "improvements": {
+    "title": "改善提案",
+    "priority": "優先度",
+    "expectedGain": "予想スコア向上",
+    "optimizedVersion": "最適化版",
+    "apply": "適用する"
+  },
+  "tweet": {
+    "button": "ツイートする",
+    "success": "投稿画面を開きました"
+  },
+  "error": {
+    "empty": "投稿内容を入力してください",
+    "tooLong": "280文字以内で入力してください",
+    "apiError": "分析中にエラーが発生しました",
+    "retry": "再試行"
+  },
+  "language": {
+    "switch": "English"
+  }
+}
