@@ -7,10 +7,8 @@ import { ProblemSection } from "@/components/problem-section"
 import { DevToolsSection } from "@/components/dev-tools-section"
 import { LatestPostsSection } from "@/components/latest-posts-section"
 import { Footer } from "@/components/footer"
-import { NewsletterPopup } from "@/components/newsletter-popup"
 
 export default function HiroLandingPage() {
-  const [showPopup, setShowPopup] = useState(true)
   const [copied, setCopied] = useState(false)
 
   const handleCopy = async () => {
@@ -64,8 +62,6 @@ export default function HiroLandingPage() {
       </main>
 
       <Footer />
-
-      {showPopup && <NewsletterPopup onClose={() => setShowPopup(false)} />}
     </div>
   )
 }
