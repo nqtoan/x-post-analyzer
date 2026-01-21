@@ -26,6 +26,26 @@ export async function generateMetadata({
   return {
     title: metadata.title,
     description: metadata.description,
+    openGraph: {
+      title: metadata.title,
+      description: metadata.description,
+      type: "website",
+      locale: locale === "ja" ? "ja_JP" : "en_US",
+      images: [
+        {
+          url: "/opengraph-image.png",
+          width: 2848,
+          height: 1504,
+          alt: metadata.title,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: metadata.title,
+      description: metadata.description,
+      images: ["/opengraph-image.png"],
+    },
   };
 }
 
