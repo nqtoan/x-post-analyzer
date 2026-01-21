@@ -22,7 +22,7 @@ export const SamplePosts: FC = () => {
         {t("title")}
       </Title>
       <SimpleGrid
-        cols={{ base: 1, sm: 2, md: 3 }}
+        cols={{ base: 2, sm: 2, md: 3 }}
         spacing="sm"
         className={styles.grid}
       >
