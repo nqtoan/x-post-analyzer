@@ -1,3 +1,10 @@
+import { clsx, type ClassValue } from 'clsx'
+import { twMerge } from 'tailwind-merge'
+
+export function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs))
+}
+
 /**
  * Intl.Segmenterを使用して正確な文字数（書記素クラスタ）をカウント
  * 絵文字や結合文字を正しく1文字として扱う
