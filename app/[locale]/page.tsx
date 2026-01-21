@@ -149,14 +149,14 @@ export default function HomePage(): React.ReactNode {
 
           <Divider />
 
-          <SamplePosts />
-
           <TweetInput
             value={text}
             onChange={setText}
             onAnalyze={handleAnalyze}
             isLoading={isPending}
           />
+
+          {result === null && <SamplePosts />}
 
           {error !== null && (
             <Alert color="red" title="Error">
