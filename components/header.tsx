@@ -1,5 +1,7 @@
 "use client"
 
+import { ChevronDown } from "lucide-react"
+
 export function Header() {
   return (
     <header className="bg-background border-b border-border px-6 py-4">
