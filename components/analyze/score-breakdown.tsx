@@ -169,17 +169,113 @@ export function ScoreBreakdown({ data }: ScoreBreakdownProps) {
       title: "Extended Engagement",
       score: extendedEngagementScore,
       maxScore: extendedEngagementMax,
+      items: [
+        {
+          name: "Dwell Time",
+          score: breakdown.dwellTime.score,
+          maxScore: breakdown.dwellTime.max,
+          reason: breakdown.dwellTime.reason,
+        },
+        {
+          name: "Continuous Dwell Time",
+          score: breakdown.continuousDwellTime.score,
+          maxScore: breakdown.continuousDwellTime.max,
+          reason: breakdown.continuousDwellTime.reason,
+        },
+        {
+          name: "Click Potential",
+          score: breakdown.clickPotential.score,
+          maxScore: breakdown.clickPotential.max,
+          reason: breakdown.clickPotential.reason,
+        },
+        {
+          name: "Photo Expand",
+          score: breakdown.photoExpand.score,
+          maxScore: breakdown.photoExpand.max,
+          reason: breakdown.photoExpand.reason,
+        },
+        {
+          name: "Video View",
+          score: breakdown.videoView.score,
+          maxScore: breakdown.videoView.max,
+          reason: breakdown.videoView.reason,
+        },
+        {
+          name: "Quoted Click",
+          score: breakdown.quotedClick.score,
+          maxScore: breakdown.quotedClick.max,
+          reason: breakdown.quotedClick.reason,
+        },
+      ],
     },
     {
       title: "Relationship Building",
       score: relationshipBuildingScore,
       maxScore: relationshipBuildingMax,
+      items: [
+        {
+          name: "Profile Click",
+          score: breakdown.profileClick.score,
+          maxScore: breakdown.profileClick.max,
+          reason: breakdown.profileClick.reason,
+        },
+        {
+          name: "Follow Potential",
+          score: breakdown.followPotential.score,
+          maxScore: breakdown.followPotential.max,
+          reason: breakdown.followPotential.reason,
+        },
+        {
+          name: "Share Potential",
+          score: breakdown.sharePotential.score,
+          maxScore: breakdown.sharePotential.max,
+          reason: breakdown.sharePotential.reason,
+        },
+        {
+          name: "Share Via DM",
+          score: breakdown.shareViaDM.score,
+          maxScore: breakdown.shareViaDM.max,
+          reason: breakdown.shareViaDM.reason,
+        },
+        {
+          name: "Share Via Copy Link",
+          score: breakdown.shareViaCopyLink.score,
+          maxScore: breakdown.shareViaCopyLink.max,
+          reason: breakdown.shareViaCopyLink.reason,
+        },
+      ],
     },
     {
       title: "Penalties",
       score: totalPenalty,
       maxScore: 0,
       isPenalty: true,
+      items: [
+        {
+          name: "Not Interested",
+          score: penalties.notInterested.score,
+          maxScore: 0,
+          reason: penalties.notInterested.reason,
+        },
+        {
+          name: "Mute Risk",
+          score: penalties.muteRisk.score,
+          maxScore: 0,
+          reason: penalties.muteRisk.reason,
+        },
+        {
+          name: "Block Risk",
+          score: penalties.blockRisk.score,
+          maxScore: 0,
+          reason: penalties.blockRisk.reason,
+        },
+        {
+          name: "Report Risk",
+          score: penalties.reportRisk.score,
+          maxScore: 0,
+          reason: penalties.reportRisk.reason,
+        },
+      ],
     },
   ]
 

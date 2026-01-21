@@ -7,7 +7,7 @@ import { PostInput } from "@/components/analyze/post-input"
 import { TotalScore } from "@/components/analyze/total-score"
 import { ScoreBreakdown } from "@/components/analyze/score-breakdown"
 import { ImprovementSuggestions } from "@/components/analyze/improvement-suggestions"
-import { VisualsPrompt } from "@/components/analyze/visuals-prompt"
+import { ImprovedVersions } from "@/components/analyze/improved-versions"
 import type { AnalyzeResponse } from "@/lib/types"
 
 export default function AnalyzePage() {
@@ -87,8 +87,8 @@ export default function AnalyzePage() {
             {/* Improvement Suggestions */}
             <ImprovementSuggestions data={analysisData.data} />
 
-            {/* Visuals & Engagement Prompt */}
-            <VisualsPrompt data={analysisData.data} />
+            {/* Improved Versions - Threaded Story, Cautionary Tale, Engagement Suggestions */}
+            <ImprovedVersions data={analysisData.data} />
           </>
         )}
       </main>
