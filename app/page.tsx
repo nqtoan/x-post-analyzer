@@ -9,7 +9,7 @@ import { LatestPostsSection } from "@/components/latest-posts-section"
 import { Footer } from "@/components/footer"
 import { NewsletterPopup } from "@/components/newsletter-popup"
 
-export default function HomePage() {
+export default function HiroLandingPage() {
   const [showPopup, setShowPopup] = useState(true)
   const [copied, setCopied] = useState(false)
 

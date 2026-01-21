@@ -39,7 +39,7 @@ export function TotalScore({ data }: TotalScoreProps) {
 
   return (
     <div className="border border-border bg-card p-8 mb-8">
-      <h2 className="text-lg font-bold text-foreground text-center mb-6">Total Score</h2>
+      <h2 className="text-lg md:text-xl font-bold tracking-tight text-foreground text-center mb-6">Total Score</h2>
       
       <div className="flex flex-col items-center">
         {/* Circular Progress */}

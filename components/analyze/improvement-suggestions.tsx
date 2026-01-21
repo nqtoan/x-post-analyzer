@@ -11,7 +11,7 @@ function SuggestionCard({ suggestion, priority }: { suggestion: { suggestion: st
         <span className="text-xs font-bold text-[#fc6432] uppercase tracking-wide">
           Priority {priority}
         </span>
-        <span className="text-xs font-medium text-[#3b82f6] border border-[#3b82f6] px-2 py-0.5">
+        <span className="text-xs font-medium text-foreground border border-foreground px-2 py-0.5">
           +{suggestion.expectedGain} PTS
         </span>
       </div>
@@ -23,7 +23,7 @@ function SuggestionCard({ suggestion, priority }: { suggestion: { suggestion: st
 export function ImprovementSuggestions({ data }: ImprovementSuggestionsProps) {
   return (
     <div className="mb-8">
-      <h2 className="text-lg font-bold text-foreground mb-4">Improvement Suggestions</h2>
+      <h2 className="text-lg md:text-xl font-bold tracking-tight text-foreground mb-4">Improvement Suggestions</h2>
       <div>
         {data.improvements.map((suggestion) => (
           <SuggestionCard key={suggestion.priority} suggestion={suggestion} priority={suggestion.priority} />

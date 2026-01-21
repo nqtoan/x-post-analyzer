@@ -81,9 +81,10 @@ export function PostInput({ onAnalyze, onError, onAnalyzeStart, isLoading }: Pos
         <button
           onClick={handleAnalyze}
           disabled={isLoading || charCount > MAX_TWEET_LENGTH || text.trim().length === 0}
-          className="bg-[#3b82f6] text-white px-6 py-2 text-sm font-medium hover:bg-[#2563eb] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+          className="bg-foreground text-background px-6 py-2 text-sm font-medium hover:bg-foreground/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed inline-flex items-center gap-2"
         >
           {isLoading ? "Analyzing..." : "Analyze"}
+          {!isLoading && <span>→</span>}
         </button>
       </div>
     </div>

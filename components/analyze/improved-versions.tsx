@@ -7,7 +7,7 @@ interface ImprovedVersionsProps {
 function ImprovedVersionCard({ version, index }: { version: { title: string; text: string; improvements: string[] }; index: number }) {
   return (
     <div className="border border-border bg-card p-6 mb-8">
-      <h2 className="text-lg font-bold text-foreground mb-4">{version.title}</h2>
+      <h2 className="text-lg md:text-xl font-bold tracking-tight text-foreground mb-4">{version.title}</h2>
       
       <div className="mb-6">
         <span className="text-xs text-muted-foreground uppercase tracking-wide">Improved Text</span>
@@ -30,8 +30,9 @@ function ImprovedVersionCard({ version, index }: { version: { title: string; tex
         </ul>
       </div>
 
-      <button className="w-full bg-[#3b82f6] text-white py-3 text-sm font-medium hover:bg-[#2563eb] transition-colors">
+      <button className="w-full bg-foreground text-background py-3 text-sm font-medium hover:bg-foreground/90 transition-colors inline-flex items-center justify-center gap-2">
         Copy to Tweet
+        <span>→</span>
       </button>
     </div>
   )

@@ -281,7 +281,7 @@ export function ScoreBreakdown({ data }: ScoreBreakdownProps) {
 
   return (
     <div className="mb-8">
-      <h2 className="text-lg font-bold text-foreground mb-4">Score Breakdown</h2>
+      <h2 className="text-lg md:text-xl font-bold tracking-tight text-foreground mb-4">Score Breakdown</h2>
       <div className="border border-border bg-card">
         {breakdownData.map((section, index) => (
           <BreakdownAccordion key={index} section={section} />
