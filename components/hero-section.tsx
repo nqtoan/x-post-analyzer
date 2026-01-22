@@ -1,7 +1,11 @@
 export function HeroSection() {
   return (
-    <section className="border border-border m-4 md:m-6 relative overflow-hidden">
+    <section className="border border-border m-4 md:m-6 relative overflow-hidden bg-gradient-to-br from-background via-background to-[#fc6432]/10">
       <div className="relative py-16 md:py-24 px-6">
+        {/* Gradient Accent Orb */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#fc6432]/5 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute bottom-0 right-0 w-[300px] h-[300px] bg-[#fc6432]/10 rounded-full blur-2xl pointer-events-none" />
+        
         {/* ASCII Art Background */}
         <div className="absolute inset-0 flex items-center justify-center overflow-hidden opacity-30 pointer-events-none">
           <pre className="text-[8px] md:text-[10px] text-foreground/60 font-mono leading-tight whitespace-pre">
@@ -32,7 +36,7 @@ export function HeroSection() {
               Analyze a Post
               <span>→</span>
             </a>
-            <a href="https://github.com/xai-org/x-algorithm" className="text-foreground/70 hover:text-foreground transition-colors text-sm">
+            <a href="/analyze" className="text-foreground/70 hover:text-foreground transition-colors text-sm">
               View X Recommendation Algorithm →
             </a>
           </div>

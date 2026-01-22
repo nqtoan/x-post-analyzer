@@ -12,7 +12,7 @@ export function ProblemSection() {
       </div>
 
       {/* Content */}
-      <div className="px-6 py-32 md:py-40">
+      <div className="px-6 py-32 md:py-40 bg-sidebar-accent">
         <div className="max-w-4xl mx-auto text-center">
           {/* Heading */}
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-serif text-foreground leading-tight">

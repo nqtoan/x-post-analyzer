@@ -68,35 +68,7 @@ export function LatestPostsSection() {
   ]
 
   return (
-    <section className="bg-[#2a2a2a] py-16 px-4 md:px-6">
-      <div className="max-w-7xl mx-auto">
-        <h2 className="text-3xl font-bold text-white mb-8">Latest posts & videos</h2>
-        
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {posts.map((post, i) => (
-            <article key={i} className="group cursor-pointer">
-              <div className="overflow-hidden">{post.image}</div>
-              <div className="mt-4">
-                <p className="text-white/60 text-sm">{post.date}</p>
-                <h3 className="text-white font-medium mt-1 group-hover:text-[#fc6432] transition-colors">
-                  {post.title}
-                </h3>
-                <span className="inline-block mt-2 text-xs border border-white/30 text-white/60 px-2 py-0.5">
-                  {post.type}
-                </span>
-              </div>
-            </article>
-          ))}
-        </div>
-
-        <div className="text-center mt-12">
-          <a href="#" className="text-white hover:text-[#fc6432] transition-colors inline-flex items-center gap-2">
-            View the Blog
-            <span>→</span>
-          </a>
-        </div>
-      </div>
-    </section>
+    null
   )
 }
 
