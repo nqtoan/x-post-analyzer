@@ -10,19 +10,12 @@ export const metadata: Metadata = {
   icons: {
     icon: [
       {
-        url: '/icon-light-32x32.png',
-        media: '(prefers-color-scheme: light)',
-      },
-      {
-        url: '/icon-dark-32x32.png',
-        media: '(prefers-color-scheme: dark)',
-      },
-      {
-        url: '/icon.svg',
-        type: 'image/svg+xml',
+        url: '/xanai-logo.png',
+        type: 'image/png',
       },
     ],
-    apple: '/apple-icon.png',
+    apple: '/xanai-logo.png',
+    shortcut: '/xanai-logo.png',
   },
 }
 

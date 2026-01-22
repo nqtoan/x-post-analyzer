@@ -5,8 +5,15 @@ export function Footer() {
         <div className="flex flex-col md:flex-row justify-between gap-8 mb-12">
           {/* Logo and description */}
           <div className="max-w-md">
-            <a href="/" className="text-foreground font-bold text-xl tracking-tight inline-block mb-4">
-              <span className="text-[#fc6432]">X</span>ANAI
+            <a href="/" className="flex items-center gap-2 mb-4">
+              <img 
+                src="/xanai-logo.png" 
+                alt="XANAI" 
+                className="h-8 w-auto"
+              />
+              <span className="text-foreground font-bold text-xl tracking-tight">
+                <span className="text-[#fc6432]">X</span>ANAI
+              </span>
             </a>
             <p className="text-sm text-foreground/60 leading-relaxed">
               AI-powered X post analysis. Understand the algorithm, optimize your content, and grow your audience with data-driven insights.
@@ -17,7 +24,7 @@ export function Footer() {
           <div>
             <span className="text-xs text-foreground/50 mb-3 block">Social /</span>
             <ul className="space-y-2 text-sm text-foreground/70">
-              <li><a href="#" className="hover:text-foreground transition-colors">├─ X</a></li>
+              <li><a href="https://x.com/xanaifun" className="hover:text-foreground transition-colors">├─ X</a></li>
               <li><a href="#" className="hover:text-foreground transition-colors">├─ GitHub</a></li>
               <li><a href="#" className="hover:text-foreground transition-colors">└─ Discord</a></li>
             </ul>

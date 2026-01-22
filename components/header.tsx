@@ -30,8 +30,15 @@ export function Header() {
       <div className="max-w-7xl mx-auto flex items-center justify-between">
         {/* Logo */}
         <div className="flex items-center gap-12">
-          <a href="/" className="text-foreground font-bold text-xl tracking-tight">
-            <span className="text-[#fc6432]">X</span>ANAI
+          <a href="/" className="flex items-center gap-2">
+            <img 
+              src="/xanai-logo.png" 
+              alt="XANAI" 
+              className="h-8 w-auto"
+            />
+            <span className="text-foreground font-bold text-xl tracking-tight hidden sm:inline">
+              <span className="text-[#fc6432]">X</span>ANAI
+            </span>
           </a>
           
           {/* Navigation */}
