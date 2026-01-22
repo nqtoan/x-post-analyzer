@@ -1,73 +1,37 @@
 "use client"
 
-import { useState, useRef, useEffect } from "react"
+import { useState } from "react"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
-import { ChatMessage } from "@/components/analyze/chat-message"
-import { ChatInput } from "@/components/analyze/chat-input"
-import { ScoreDisplay } from "@/components/analyze/score-display"
-import { BreakdownCards } from "@/components/analyze/breakdown-cards"
-import { SuggestionsList } from "@/components/analyze/suggestions-list"
-import { ImprovedPost } from "@/components/analyze/improved-post"
+import { PostInputSection } from "@/components/analyze/post-input-section"
+import { AnalysisProgress } from "@/components/analyze/analysis-progress"
+import { TotalScore } from "@/components/analyze/total-score"
+import { ScoreBreakdown } from "@/components/analyze/score-breakdown"
+import { ImprovementSuggestions } from "@/components/analyze/improvement-suggestions"
+import { InsightSections } from "@/components/analyze/insight-sections"
+import { AnalysisComplete } from "@/components/analyze/analysis-complete"
 import type { AnalyzeResponse } from "@/lib/types"
 
-interface Message {
-  id: string
-  type: "user" | "bot"
-  content: "text" | "score" | "breakdown" | "suggestions" | "improved"
-  text?: string
-  data?: AnalyzeResponse["data"]
-  timestamp: string
-}
+type AnalysisStage = "idle" | "analyzing" | "scoring" | "generating" | "complete"
 
 export default function AnalyzePage() {
-  const [messages, setMessages] = useState<Message[]>([
-    {
-      id: "1",
-      type: "bot",
-      content: "text",
-      text: "Welcome to XANAI! I'm your AI-powered X post analyzer. Paste your post below and I'll analyze its potential performance based on the X recommendation algorithm.",
-      timestamp: "Just now"
-    }
-  ])
-  const [isAnalyzing, setIsAnalyzing] = useState(false)
-  const messagesEndRef = useRef<HTMLDivElement>(null)
+  const [analysisData, setAnalysisData] = useState<AnalyzeResponse["data"] | null>(null)
+  const [stage, setStage] = useState<AnalysisStage>("idle")
+  const [error, setError] = useState<string | null>(null)
+  const [userInput, setUserInput] = useState<string>("")
 
-  const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" })
-  }
-
-  useEffect(() => {
-    scrollToBottom()
-  }, [messages])
-
-  const handleSend = async (text: string) => {
-    const now = new Date()
-    const timestamp = now.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })
-    
-    // Add user message
-    setMessages(prev => [...prev, {
-      id: Date.now().toString(),
-      type: "user",
-      content: "text",
-      text,
-      timestamp
-    }])
-
-    setIsAnalyzing(true)
-
-    // Add analyzing message
-    setTimeout(() => {
-      setMessages(prev => [...prev, {
-        id: (Date.now() + 1).toString(),
-        type: "bot",
-        content: "text",
-        text: "Analyzing your post against the X recommendation algorithm...",
-        timestamp
-      }])
-    }, 500)
+  const handleAnalyze = async (text: string) => {
+    setUserInput(text)
+    setError(null)
+    setAnalysisData(null)
+    setStage("analyzing")
 
     try {
+      // Stage 1: Analyzing
+      await new Promise(resolve => setTimeout(resolve, 1000))
+      setStage("scoring")
+
+      // Stage 2: Scoring
       const response = await fetch("/api/analyze", {
         method: "POST",
         headers: {
@@ -82,90 +46,31 @@ export default function AnalyzePage() {
       const result: AnalyzeResponse = await response.json()
 
       if (!result.success || !result.data) {
-        setMessages(prev => [...prev, {
-          id: (Date.now() + 2).toString(),
-          type: "bot",
-          content: "text",
-          text: result.error || "Analysis failed. Please try again.",
-          timestamp
-        }])
-        setIsAnalyzing(false)
+        setError(result.error || "Analysis failed. Please try again.")
+        setStage("idle")
         return
       }
 
-      // Add score message
-      setTimeout(() => {
-        setMessages(prev => [...prev, {
-          id: (Date.now() + 2).toString(),
-          type: "bot",
-          content: "score",
-          data: result.data,
-          timestamp
-        }])
-      }, 1500)
+      // Stage 3: Generating
+      setStage("generating")
+      await new Promise(resolve => setTimeout(resolve, 1000))
 
-      // Add breakdown message
-      setTimeout(() => {
-        setMessages(prev => [...prev, {
-          id: (Date.now() + 3).toString(),
-          type: "bot",
-          content: "breakdown",
-          data: result.data,
-          timestamp
-        }])
-      }, 2500)
-
-      // Add suggestions message
-      setTimeout(() => {
-        setMessages(prev => [...prev, {
-          id: (Date.now() + 4).toString(),
-          type: "bot",
-          content: "suggestions",
-          data: result.data,
-          timestamp
-        }])
-      }, 3500)
-
-      // Add improved post message
-      setTimeout(() => {
-        setMessages(prev => [...prev, {
-          id: (Date.now() + 5).toString(),
-          type: "bot",
-          content: "improved",
-          data: result.data,
-          timestamp
-        }])
-        setIsAnalyzing(false)
-      }, 4500)
+      // Complete
+      setAnalysisData(result.data)
+      setStage("complete")
     } catch (error) {
-      setMessages(prev => [...prev, {
-        id: (Date.now() + 2).toString(),
-        type: "bot",
-        content: "text",
-        text: error instanceof Error ? error.message : "Network error. Please try again.",
-        timestamp
-      }])
-      setIsAnalyzing(false)
+      setError(error instanceof Error ? error.message : "Network error. Please try again.")
+      setStage("idle")
     }
   }
 
-  const renderMessageContent = (message: Message) => {
-    if (!message.data) return null
-
-    switch (message.content) {
-      case "text":
-        return <p className="text-sm">{message.text}</p>
-      case "score":
-        return <ScoreDisplay data={message.data} />
-      case "breakdown":
-        return <BreakdownCards data={message.data} />
-      case "suggestions":
-        return <SuggestionsList data={message.data} />
-      case "improved":
-        return <ImprovedPost data={message.data} />
-      default:
-        return null
-    }
+  const handleNewAnalysis = () => {
+    setAnalysisData(null)
+    setStage("idle")
+    setUserInput("")
+    setError(null)
+    // Scroll to top
+    window.scrollTo({ top: 0, behavior: "smooth" })
   }
 
   return (
@@ -176,12 +81,13 @@ export default function AnalyzePage() {
 
       <Header />
 
-      {/* Chat Container */}
-      <main className="flex-1 flex flex-col max-w-3xl mx-auto w-full px-4 py-6 relative z-10">
-        {/* Chat Header */}
-        <div className="text-center mb-6">
-          <h1 className="text-2xl font-bold text-foreground">X Post Analyzer</h1>
-          <p className="text-sm text-muted-foreground mt-1">
+      <main className="flex-1 max-w-5xl mx-auto w-full px-4 py-8 relative z-10">
+        {/* Page Header */}
+        <div className="text-center mb-8">
+          <h1 className="text-3xl md:text-4xl font-bold tracking-tight text-foreground mb-2">
+            X Post Analyzer
+          </h1>
+          <p className="text-sm text-muted-foreground">
             AI-powered analysis based on the{" "}
             <a href="https://github.com/xai-org/x-algorithm" className="text-[#fc6432] hover:underline">
               X Recommendation Algorithm
@@ -189,38 +95,77 @@ export default function AnalyzePage() {
           </p>
         </div>
 
-        {/* Messages Area */}
-        <div className="flex-1 overflow-y-auto mb-4 space-y-2">
-          {messages.map((message) => (
-            <ChatMessage
-              key={message.id}
-              type={message.type}
-              timestamp={message.timestamp}
-            >
-              {renderMessageContent(message)}
-            </ChatMessage>
-          ))}
-          
-          {isAnalyzing && (
-            <ChatMessage type="bot" timestamp="">
-              <div className="flex items-center gap-2">
-                <div className="flex gap-1">
-                  <span className="w-2 h-2 bg-[#fc6432] rounded-full animate-bounce" style={{ animationDelay: "0ms" }} />
-                  <span className="w-2 h-2 bg-[#fc6432] rounded-full animate-bounce" style={{ animationDelay: "150ms" }} />
-                  <span className="w-2 h-2 bg-[#fc6432] rounded-full animate-bounce" style={{ animationDelay: "300ms" }} />
-                </div>
-                <span className="text-sm text-muted-foreground">Analyzing...</span>
-              </div>
-            </ChatMessage>
-          )}
-          
-          <div ref={messagesEndRef} />
-        </div>
+        {/* Input Section */}
+        {stage === "idle" && (
+          <PostInputSection 
+            onAnalyze={handleAnalyze} 
+            disabled={false}
+            isLoading={false}
+          />
+        )}
 
-        {/* Input Area */}
-        <div className="sticky bottom-0 bg-gradient-to-t from-background via-background to-transparent pt-4">
-          <ChatInput onSend={handleSend} disabled={isAnalyzing} />
-        </div>
+        {/* Progress Section */}
+        {(stage === "analyzing" || stage === "scoring" || stage === "generating") && (
+          <>
+            <PostInputSection 
+              onAnalyze={handleAnalyze} 
+              disabled={true}
+              isLoading={true}
+            />
+            <AnalysisProgress stage={stage} />
+          </>
+        )}
+
+        {/* Error Display */}
+        {error && (
+          <div className="bg-destructive/10 border border-destructive/20 text-destructive p-4 rounded-lg mb-8">
+            <div className="flex items-center gap-2">
+              <span className="text-lg">⚠</span>
+              <div>
+                <p className="font-medium">Analysis Failed</p>
+                <p className="text-sm mt-1">{error}</p>
+              </div>
+            </div>
+            <button
+              onClick={handleNewAnalysis}
+              className="mt-4 text-sm text-destructive hover:underline"
+            >
+              Try again
+            </button>
+          </div>
+        )}
+
+        {/* Results Section */}
+        {stage === "complete" && analysisData && (
+          <div className="space-y-8">
+            {/* User Input Display */}
+            <div className="bg-card border border-border rounded-lg p-6">
+              <h2 className="text-sm font-medium text-muted-foreground mb-2 uppercase tracking-wide">
+                Your Post
+              </h2>
+              <div className="bg-muted/30 border border-border rounded-lg p-4">
+                <pre className="text-sm text-foreground whitespace-pre-wrap font-sans leading-relaxed">
+                  {userInput}
+                </pre>
+              </div>
+            </div>
+
+            {/* Overall Score */}
+            <TotalScore data={analysisData} />
+
+            {/* Score Breakdown */}
+            <ScoreBreakdown data={analysisData} />
+
+            {/* Improvement Suggestions */}
+            <ImprovementSuggestions data={analysisData} />
+
+            {/* Insight Sections */}
+            <InsightSections data={analysisData} />
+
+            {/* Analysis Complete CTA */}
+            <AnalysisComplete data={analysisData} onNewAnalysis={handleNewAnalysis} />
+          </div>
+        )}
       </main>
 
       <Footer />
