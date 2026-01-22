@@ -140,7 +140,7 @@ export default function AnalyzePage() {
           <div className="space-y-8">
             {/* User Input Display */}
             <div className="bg-card border border-border rounded-lg p-6">
-              <h2 className="text-sm font-medium text-muted-foreground mb-2 uppercase tracking-wide">
+              <h2 className="text-sm font-medium text-muted-foreground mb-2 uppercase tracking-wide font-secondary">
                 Your Post
               </h2>
               <div className="bg-muted/30 border border-border rounded-lg p-4">

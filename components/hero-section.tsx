@@ -27,7 +27,7 @@ export function HeroSection() {
 
         {/* Content */}
         <div className="relative z-10 text-center max-w-4xl mx-auto">
-          <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight leading-none font-mono text-black">
+          <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight leading-none font-serif text-black">
             OPTIMIZE FOR THE ALGORITHM.
           </h1>
           

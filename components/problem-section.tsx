@@ -6,7 +6,7 @@ export function ProblemSection() {
       
       {/* Label */}
       <div className="absolute top-4 left-4 md:left-6">
-        <span className="bg-foreground text-background px-4 py-2 text-xs font-bold uppercase tracking-wider">
+        <span className="bg-foreground text-background px-4 py-2 text-xs font-bold uppercase tracking-wider font-secondary">
           The Problem
         </span>
       </div>

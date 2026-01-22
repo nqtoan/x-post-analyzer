@@ -75,8 +75,17 @@
 }
 
 @theme inline {
-  --font-sans: var(--font-inter), system-ui, sans-serif;
-  --font-mono: 'SF Mono', Monaco, 'Andale Mono', monospace;
+  /* Primary UI Font - default for body, buttons, forms, navigation, UI labels */
+  --font-sans: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  
+  /* Editorial / Emphasis Font - for hero headlines, manifesto sections, large headings, quotes */
+  --font-serif: "Newsreader", "Newsreader Fallback", serif;
+  
+  /* Secondary UI / Utility Font - for subheadings, section labels, meta text */
+  --font-secondary: "IBM Plex Sans", "IBM Plex Sans Fallback", sans-serif;
+  
+  /* Monospace Font - for code blocks, scores, technical values, debug text */
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -121,5 +130,21 @@
   }
   body {
     @apply bg-background text-foreground;
+    font-family: var(--font-sans);
+  }
+  
+  /* Editorial font for large headings and emphasis */
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-serif);
+  }
+  
+  /* Monospace for code and technical elements */
+  code, pre, .font-mono {
+    font-family: var(--font-mono);
+  }
+  
+  /* Secondary font utility class */
+  .font-secondary {
+    font-family: var(--font-secondary);
   }
 }

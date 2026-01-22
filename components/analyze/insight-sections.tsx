@@ -49,7 +49,7 @@ export function InsightSections({ data }: InsightSectionsProps) {
 
           {threadedStory.improvements && threadedStory.improvements.length > 0 && (
             <div>
-              <p className="text-xs font-medium text-muted-foreground mb-2 uppercase tracking-wide">Key Improvements</p>
+              <p className="text-xs font-medium text-muted-foreground mb-2 uppercase tracking-wide font-secondary">Key Improvements</p>
               <ul className="space-y-1.5">
                 {threadedStory.improvements.map((improvement, idx) => (
                   <li key={idx} className="text-sm text-foreground flex items-start gap-2">
@@ -81,7 +81,7 @@ export function InsightSections({ data }: InsightSectionsProps) {
 
           {cautionaryTale.improvements && cautionaryTale.improvements.length > 0 && (
             <div>
-              <p className="text-xs font-medium text-muted-foreground mb-2 uppercase tracking-wide">Key Improvements</p>
+              <p className="text-xs font-medium text-muted-foreground mb-2 uppercase tracking-wide font-secondary">Key Improvements</p>
               <ul className="space-y-1.5">
                 {cautionaryTale.improvements.map((improvement, idx) => (
                   <li key={idx} className="text-sm text-foreground flex items-start gap-2">
@@ -113,7 +113,7 @@ export function InsightSections({ data }: InsightSectionsProps) {
 
           {engagementSuggestions.improvements && engagementSuggestions.improvements.length > 0 && (
             <div>
-              <p className="text-xs font-medium text-muted-foreground mb-2 uppercase tracking-wide">Key Improvements</p>
+              <p className="text-xs font-medium text-muted-foreground mb-2 uppercase tracking-wide font-secondary">Key Improvements</p>
               <ul className="space-y-1.5">
                 {engagementSuggestions.improvements.map((improvement, idx) => (
                   <li key={idx} className="text-sm text-foreground flex items-start gap-2">
@@ -144,7 +144,7 @@ export function InsightSections({ data }: InsightSectionsProps) {
 
               {version.improvements && version.improvements.length > 0 && (
                 <div>
-                  <p className="text-xs font-medium text-muted-foreground mb-2 uppercase tracking-wide">Key Improvements</p>
+                  <p className="text-xs font-medium text-muted-foreground mb-2 uppercase tracking-wide font-secondary">Key Improvements</p>
                   <ul className="space-y-1.5">
                     {version.improvements.map((improvement, i) => (
                       <li key={i} className="text-sm text-foreground flex items-start gap-2">
