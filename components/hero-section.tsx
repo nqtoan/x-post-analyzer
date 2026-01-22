@@ -32,7 +32,7 @@ export function HeroSection() {
               Analyze a Post
               <span>→</span>
             </a>
-            <a href="/analyze" className="text-foreground/70 hover:text-foreground transition-colors text-sm">
+            <a href="https://github.com/xai-org/x-algorithm" className="text-foreground/70 hover:text-foreground transition-colors text-sm">
               View X Recommendation Algorithm →
             </a>
           </div>

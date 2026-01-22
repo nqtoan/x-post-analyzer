@@ -24,7 +24,18 @@ export default function HiroLandingPage() {
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Top Banner */}
+      <Header />
+
+      <main>
+        <HeroSection />
+        <ProblemSection />
+        <DevToolsSection />
+        <LatestPostsSection />
+      </main>
+
+      <Footer />
+
+      {/* Bottom Banner */}
       <div className="bg-[#fc6432] text-foreground py-2.5 px-4 text-center text-sm">
         <span className="uppercase tracking-wide text-xs font-medium">
           $XANA is LIVE : soon     
@@ -51,17 +62,6 @@ export default function HiroLandingPage() {
           )}
         </button>
       </div>
-
-      <Header />
-
-      <main>
-        <HeroSection />
-        <ProblemSection />
-        <DevToolsSection />
-        <LatestPostsSection />
-      </main>
-
-      <Footer />
     </div>
   )
 }
