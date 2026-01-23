@@ -38,7 +38,7 @@ export default function HiroLandingPage() {
       {/* Bottom Banner */}
       <div className="bg-[#fc6432] text-foreground py-2.5 px-4 text-center text-sm">
         <span className="uppercase tracking-wide text-xs font-medium">
-          $XANAI is LIVE :     
+          $XANAI is LIVE : 8URZF9eTSZXrStB9SmSTiyjKBZ9VFxQJeTRTZB85pump   
         </span>
         <button 
           onClick={handleCopy}
