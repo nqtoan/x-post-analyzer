@@ -12,7 +12,7 @@ export default function HiroLandingPage() {
   const [copied, setCopied] = useState(false)
 
   const handleCopy = async () => {
-    const textToCopy = "soon"
+    const textToCopy = "8URZF9eTSZXrStB9SmSTiyjKBZ9VFxQJeTRTZB85pump"
     try {
       await navigator.clipboard.writeText(textToCopy)
       setCopied(true)
@@ -38,7 +38,7 @@ export default function HiroLandingPage() {
       {/* Bottom Banner */}
       <div className="bg-[#fc6432] text-foreground py-2.5 px-4 text-center text-sm">
         <span className="uppercase tracking-wide text-xs font-medium">
-          $XANA is LIVE : soon     
+          $XANAI is LIVE :     
         </span>
         <button 
           onClick={handleCopy}
